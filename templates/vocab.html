@@ -71,14 +71,13 @@ $("#attempt").keyup(function(event) {
    $.getJSON( "/_check", { text: txt }, 
               function(data) {
                 rsval = data.result.match;
-                console.log("rsval: " + rsval)
+                console.log("rsval: " + rsval);
                 $("#attempt").val("");
-                $("#response").append(rsval + " "); 
+                $("#result").append(rsval + " "); 
                 
                }
            );
    });
-}
 </script>
 
 </head>
