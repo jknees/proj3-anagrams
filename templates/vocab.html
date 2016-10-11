@@ -56,6 +56,7 @@ $("#entry").submit( function(event) {
 // event does not depend on it being a letter. 
 //
 $("#attempt").keyup(function(event) {
+  console.log("Key pressed");
    var txt = $("#attempt").val();  // Current content of the input field
    var keycode = event.which;      // They key that just went up
    var letter = String.fromCharCode(keycode);
@@ -72,6 +73,7 @@ $("#attempt").keyup(function(event) {
               function(data) {
                 rsval = data.result.match;
                 console.log("rsval: " + rsval);
+                console.log("Attempting to write");
                 $("#attempt").val("");
                 $("#result").append(rsval + " "); 
                 
