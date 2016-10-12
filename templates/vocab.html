@@ -134,6 +134,8 @@ $("#attempt").keyup(function(event) {
                 if (rsval != "") {
                   $("#attempt").val("");
                   $("#results").append(rsval); 
+                } else {
+                  return rsval;
                 }
                 
                }
