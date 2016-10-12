@@ -97,7 +97,7 @@ def check():
     rslt = { "match": text + " ", "url": "" }
     return jsonify(result = rslt)
   else:
-    jsonify(result= {"match": "", "url": ""})
+    return jsonify(result= {"match": "", "url": ""})
 
 ###############
 # AJAX request handlers 
