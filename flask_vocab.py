@@ -32,7 +32,7 @@ app.secret_key = CONFIG.secret_key  # Should allow using session variables
 # neither of which would be suitable for responding keystroke by keystroke.
 
 WORDS = Vocab( CONFIG.vocab )
-END_URL = "/success.html"
+END_URL = "/success"
 
 ###
 # Pages
