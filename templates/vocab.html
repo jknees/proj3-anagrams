@@ -129,6 +129,7 @@ $("#attempt").keyup(function(event) {
   $.getJSON( "/_check", { text: txt }, 
               function(data) {
                 rsval = data.result.match;
+                url = data.result.url;
                 console.log("rsval: " + rsval);
                 console.log("Attempting to write");
                 if (rsval != "") {
@@ -136,6 +137,9 @@ $("#attempt").keyup(function(event) {
                   $("#results").append(rsval); 
                 } else {
                   return rsval;
+                }
+                if (url != "") {
+                  window.location = url
                 }
                 
                }

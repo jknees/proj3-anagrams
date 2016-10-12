@@ -32,6 +32,7 @@ app.secret_key = CONFIG.secret_key  # Should allow using session variables
 # neither of which would be suitable for responding keystroke by keystroke.
 
 WORDS = Vocab( CONFIG.vocab )
+END_URL = "/success.html"
 
 ###
 # Pages
@@ -91,12 +92,12 @@ def check():
 
   ## Choose page:  Solved enough, or keep going? 
     if len(matches) >= flask.session["target_count"]:
-     return flask.redirect(url_for("success"))
+     return jsonify(result={"match": text, "url": END_URL})
 
-    rslt = { "match": text + " " }
+    rslt = { "match": text + " ", "url": "" }
     return jsonify(result = rslt)
   else:
-    jsonify(result= {"match": ""})
+    jsonify(result= {"match": "", "url": ""})
 
 ###############
 # AJAX request handlers 
@@ -131,18 +132,18 @@ def format_filt( something ):
 @app.errorhandler(404)
 def error_404(e):
   app.logger.warning("++ 404 error: {}".format(e))
-  return render_template('404.html'), 404
+  return flask.render_template('404.html'), 404
 
 @app.errorhandler(500)
 def error_500(e):
    app.logger.warning("++ 500 error: {}".format(e))
    assert app.debug == False #  I want to invoke the debugger
-   return render_template('500.html'), 500
+   return flask.render_template('500.html'), 500
 
 @app.errorhandler(403)
 def error_403(e):
   app.logger.warning("++ 403 error: {}".format(e))
-  return render_template('403.html'), 403
+  return flask.render_template('403.html'), 403
 
 
 
