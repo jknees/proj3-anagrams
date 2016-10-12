@@ -93,8 +93,10 @@ def check():
     if len(matches) >= flask.session["target_count"]:
      return flask.redirect(url_for("success"))
 
-    rslt = { "match": text }
+    rslt = { "match": text + " " }
     return jsonify(result = rslt)
+  else:
+    jsonify(result= {"match": ""})
 
 ###############
 # AJAX request handlers 

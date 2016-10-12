@@ -131,8 +131,10 @@ $("#attempt").keyup(function(event) {
                 rsval = data.result.match;
                 console.log("rsval: " + rsval);
                 console.log("Attempting to write");
-                $("#attempt").val("");
-                $("#results").append(rsval + " "); 
+                if (rsval != "") {
+                  $("#attempt").val("");
+                  $("#results").append(rsval); 
+                }
                 
                }
            );
