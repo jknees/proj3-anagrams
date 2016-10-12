@@ -49,15 +49,6 @@ def index():
   assert flask.session["target_count"] > 0
   app.logger.debug("At least one seems to be set correctly")
   return flask.render_template('vocab.html')
-
-@app.route("/keep_going")
-def keep_going():
-  """
-  After initial use of index, we keep the same scrambled
-  word and try to get more matches
-  """
-  flask.g.vocab = WORDS.as_list();
-  return flask.render_template('vocab.html')
   
 
 @app.route("/success")

@@ -38,49 +38,7 @@
 <!-- write any routing code in the Flask application. -->
 <link rel="stylesheet" href="/static/jumble.css" />
 
-<script>
 
-// Suppress normal form submission
-$("#entry").submit( function(event) {
-   event.preventDefault();
-  });
-
-// On each keystroke, ask the server whether the current 
-// word is long enough. 
-//
-// We use 'keyup' because the form value
-// is updated before that event is generated.
-// keypress is triggered before the input field has been
-// updated.  Be aware that we'll see non-character keys like
-// shift and control, so make sure whatever you do with the
-// event does not depend on it being a letter. 
-//
-$("#attempt").keyup(function(event) {
-  console.log("Key pressed");
-   var txt = $("#attempt").val();  // Current content of the input field
-   var keycode = event.which;      // They key that just went up
-   var letter = String.fromCharCode(keycode);
-
-   // That letter might not be a letter ... it could be the
-   // the backspace key, or even the shift key, because 'keyup'
-   // catches all kinds of keys.  (Also, the difference between
-   // upper and lower case comes from state of shift key + key code,
-   // so ignoring the shift key we get only the upper case letters.
-
-   if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
-
-   $.getJSON( "/_check", { text: txt }, 
-              function(data) {
-                rsval = data.result.match;
-                console.log("rsval: " + rsval);
-                console.log("Attempting to write");
-                $("#attempt").val("");
-                $("#results").append(rsval + " "); 
-                
-               }
-           );
-   });
-</script>
 
 </head>
 
@@ -136,6 +94,50 @@ $("#attempt").keyup(function(event) {
 
 <h2>You found </h2>
 <p id="results"></p>
+
+<script>
+
+// Suppress normal form submission
+$("#entry").submit( function(event) {
+   event.preventDefault();
+  });
+
+// On each keystroke, ask the server whether the current 
+// word is long enough. 
+//
+// We use 'keyup' because the form value
+// is updated before that event is generated.
+// keypress is triggered before the input field has been
+// updated.  Be aware that we'll see non-character keys like
+// shift and control, so make sure whatever you do with the
+// event does not depend on it being a letter. 
+//
+$("#attempt").keyup(function(event) {
+  console.log("Key pressed");
+  var txt = $("#attempt").val();  // Current content of the input field
+  var keycode = event.which;      // They key that just went up
+  var letter = String.fromCharCode(keycode);
+
+  // That letter might not be a letter ... it could be the
+  // the backspace key, or even the shift key, because 'keyup'
+  // catches all kinds of keys.  (Also, the difference between
+  // upper and lower case comes from state of shift key + key code,
+  // so ignoring the shift key we get only the upper case letters.
+
+  if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
+
+  $.getJSON( "/_check", { text: txt }, 
+              function(data) {
+                rsval = data.result.match;
+                console.log("rsval: " + rsval);
+                console.log("Attempting to write");
+                $("#attempt").val("");
+                $("#results").append(rsval + " "); 
+                
+               }
+           );
+  });
+</script>
 
  </div> <!-- container -->
 </body> </html>
