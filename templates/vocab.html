@@ -127,20 +127,20 @@ $("#attempt").keyup(function(event) {
 
   $.getJSON( "/_check", { text: txt }, 
               function(data) {
-                rsval = data.result.match;
-                url = data.result.url;
+                rsval = data.result.match; // Gets the matched data
+                url = data.result.url; // Gets the url to change page to on success
                 /*
                 console.log("rsval: " + rsval);
                 console.log("Attempting to write");
                 */
                 if (rsval != "") {
-                  $("#attempt").val("");
-                  $("#results").append(rsval); 
+                  $("#attempt").val(""); // Clears data field in input
+                  $("#results").append(rsval); // Appends the new results
                 } else {
                   return rsval;
                 }
                 if (url != "") {
-                  window.location.replace(url);
+                  window.location.replace(url); // Redirects the webpage
                 }
                 
                }

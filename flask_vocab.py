@@ -32,7 +32,7 @@ app.secret_key = CONFIG.secret_key  # Should allow using session variables
 # neither of which would be suitable for responding keystroke by keystroke.
 
 WORDS = Vocab( CONFIG.vocab )
-END_URL = "/success"
+END_URL = "/success" # Go to the page on winning
 
 ###
 # Pages
@@ -92,12 +92,12 @@ def check():
 
   ## Choose page:  Solved enough, or keep going? 
     if len(matches) >= flask.session["target_count"]:
-     return jsonify(result={"match": text, "url": END_URL})
+     return jsonify(result={"match": text, "url": END_URL}) # Returns the match and url back to the JQuerey
 
-    rslt = { "match": text + " ", "url": "" }
-    return jsonify(result = rslt)
+    rslt = { "match": text + " ", "url": "" } 
+    return jsonify(result = rslt) # Returns just the match
   else:
-    return jsonify(result= {"match": "", "url": ""})
+    return jsonify(result= {"match": "", "url": ""}) # Returns nothing
 
 ###############
 # AJAX request handlers 
